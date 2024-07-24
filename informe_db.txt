@@ -1,0 +1,49 @@
+CREATE TABLE venta (
+codigo_venta INT AUTO_INCREMENT,
+codigo INT(5) UNSIGNED,
+id_producto INT(6),
+hora_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+total FLOAT,
+PRIMARY KEY (codigo_venta),
+FOREIGN KEY (codigo) REFERENCES cliente(codigo),
+FOREIGN KEY (id_producto) REFERENCES inventario(id_producto)
+);
+
+
+CREATE TABLE inventario (
+id_producto INT(6),
+nombre VARCHAR(25),
+descripcion VARCHAR(50),
+categoria VARCHAR(25),
+precio FLOAT,
+cantidad INT(11),
+proveedor VARCHAR(25) DEFAULT 'casa_rivas',
+primary key(id_producto)
+);
+
+
+create table cliente(codigo int(5) zerofill auto_increment,nombres varchar(50),
+apellidos varchar(50),
+correo varchar(50),
+2correo varchar(50),
+contraseña varchar(25),
+primary key(codigo)
+);
+
+
+CREATE TABLE reporte(
+    id_reporte INT AUTO_INCREMENT,
+    codigo_venta INT,
+    codigo_cliente INT(5) UNSIGNED,
+    hora TIMESTAMP,
+    total_compra FLOAT,
+    PRIMARY KEY(id_reporte),
+    FOREIGN KEY (codigo_venta) REFERENCES venta(codigo_venta),
+    FOREIGN KEY (codigo_cliente) REFERENCES cliente(codigo)
+);
+
+
+
+
+
+
